@@ -1,0 +1,26 @@
+<!doctype html>
+<title>TODOS</title>
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='todos.css') }}">
+
+<script src="/static/js/json2.js"></script>
+<script src="/static/js/jquery.js"></script>
+<script src="/static/js/underscore.js"></script>
+<script src="/static/js/backbone_002.js"></script>
+<script src="/static/js/backbone.js"></script>
+<script src="/static/js/todos.js"></script>
+
+<div class=page>
+  <h1>TODOS</h1>
+  <div class=metanav>
+  {% if not session.logged_in %}
+    <a href="{{ url_for('login') }}">log in&nbsp&nbsp</a>
+    <a href="{{ url_for('register') }}">register</a>
+  {% else %}
+    <a href="{{ url_for('logout') }}">log out</a>
+  {% endif %}
+  </div>
+  {% for message in get_flashed_messages() %}
+    <div class=flash>{{ message }}</div>
+  {% endfor %}
+  {% block body %}{% endblock %}
+</div>
